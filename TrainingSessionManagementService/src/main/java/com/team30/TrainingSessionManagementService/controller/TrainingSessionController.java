@@ -25,7 +25,7 @@ public class TrainingSessionController {
     public ResponseEntity<String> sendEmail(@RequestBody EmailDao emailDao){
         List<Surgeon> trainees = emailDao.getSurgeons().stream().filter(surgeon -> surgeon.getRole().equals("ROLE_SURGEON_TRAINEE")).collect(Collectors.toList());
         for (Surgeon trainee: trainees) {
-            if(traningSessionService.sendEmail(emailDao.getSubject(),emailDao.getMessage(),trainee.getEmail())){
+            if(!traningSessionService.sendEmail(emailDao.getSubject(),emailDao.getMessage(),trainee.getEmail())){
                 log.error("message sent was unsuccessful for trainee -> "+trainee.toString());
             }
 
