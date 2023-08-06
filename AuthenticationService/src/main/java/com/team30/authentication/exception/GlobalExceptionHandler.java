@@ -62,5 +62,16 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalStateException(IllegalStateException exception){
+        log.error(exception.getMessage());
+        ErrorResponse response = ErrorResponse.builder()
+                .message("Virtualization Creation Failed")
+                .status(StatusMessages.CONFLICT)
+                .httpStatus(HttpStatus.CONFLICT)
+                .build();
+        return new ResponseEntity<>(response,HttpStatus.CONFLICT);
+    }
+
 
 }
