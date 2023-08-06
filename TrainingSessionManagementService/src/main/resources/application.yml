@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: TRAINING_SESSION_NOTIFICATION
+    name: TRAINING-SESSION-NOTIFICATION
 eureka:
   client:
     fetch-registry: true

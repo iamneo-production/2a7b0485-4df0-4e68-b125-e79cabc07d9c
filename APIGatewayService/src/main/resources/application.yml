@@ -1,0 +1,23 @@
+server:
+  port: 8085
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+  instance:
+    prefer-ip-address: true
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: TRAINING-SESSION-NOTIFICATION
+          uri: lb://TRAINING-SESSION-NOTIFICATION
+          predicates:
+            - Path=/Training/**
